@@ -4,6 +4,6 @@ Rails.application.config.generators do |generate|
   generate.request_specs false
   generate.routing_specs false
   generate.stylesheets false
-  generate.test_framework :rspec, spec: true, fixture: true
+  generate.test_framework false
   generate.view_specs false
 end
