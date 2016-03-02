@@ -1,0 +1,31 @@
+.questions {
+
+  margin-top: 60px;
+
+  .question{
+
+    align-items: center;
+    border-top: 1px solid #EAEAEA;
+    display: flex;
+    padding: 10px;
+
+    .detail {
+
+      .title {
+        margin: 0;
+        padding: 0;
+
+        a {
+          color: #F04500;
+          font-size: 18px;
+          font-weight: bold;
+        }
+      }
+
+      .user {
+        color: #B5B5B5;
+      }
+    }
+
+  }
+}

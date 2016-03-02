@@ -1,0 +1,14 @@
+<%= form_for @question do |f| %> 
+  
+  <!-- Form errors -->
+  <%= render 'shared/error_messages', object: @question %>
+
+   <div class="form-group">
+    <%= f.text_field :title, class: 'form-control input-lg', placeholder: 'Título' %>
+  </div>
+   <div class="form-group">
+    <%= f.text_area :body, rows: 5, class: 'form-control input-lg', placeholder: 'Descripción' %>
+  </div>
+
+  <%= f.submit 'Publicar', class: 'btn btn-primary btn-block btn-lg' %>
+<% end %>
