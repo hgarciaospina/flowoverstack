@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to root_path, alert: 'Bienvenido a FlowOverstack.'
+      redirect_to root_path, notice: 'Te has registrado con éxito.'
     else
       render :new
     end

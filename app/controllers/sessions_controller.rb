@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
-  before_action :private_access, only: [:destroy]
-  before_action :public_access, except: [:destroy]
+  before_action :private_access!, only: [:destroy]
+  before_action :public_access!, except: [:destroy]
 
   def new
   end
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       sign_in(user)
-      redirect_to root_path
+      redirect_to root_path, notice: 'Bienvenido a FlowOverstack'
     else
       render :new
     end
@@ -18,6 +18,6 @@ class SessionsController < ApplicationController
 
   def destroy
     sign_out
-    redirect_to root_path
+    redirect_to root_path, notice: 'Cerraste sesión correctamente.'
   end
 end
