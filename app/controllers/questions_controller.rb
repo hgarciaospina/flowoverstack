@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  title      :string           not null
 #  body       :text             not null
-#  user_id    :integer
+#  user_id    :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
@@ -19,6 +19,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question_answers = @question.answers
   end
 
   def new

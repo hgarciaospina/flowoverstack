@@ -1,7 +1,22 @@
 <div class="row">
   <div class="col-sm-10 col-sm-offset-1">
-    <h1><%= @question.title.capitalize %></h1>
 
-    <p><%= @question.body %></p>
+    <div class="question-page">
+      <h1 class="page-title"><%= @question.title.capitalize %></h1>
+
+      <p><%= @question.body %></p>
+
+      <div class="answers">
+        <h2 class="page-subtitle"><%= @question_answers.size %> Respuesta(s)</h2>
+        <%= render @question_answers %>
+      </div>
+
+      <% if signed_in? %>
+        <div class="answer-form">
+          <h2 class="page-subtitle">Tu respuesta</h2>
+          <%= render 'answers/form' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
