@@ -1,3 +1,10 @@
 <div class="answer">
   <%= answer.body %>
+
+  <div class="comments">
+    <%= render answer.comments.order(created_at: :asc) %>
+  </div>
+  <% if signed_in? %>
+    <%= render 'comments/form', commentable: answer %>
+  <% end %>
 </div>

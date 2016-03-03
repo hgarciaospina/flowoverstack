@@ -6,8 +6,17 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  
+
+  concern :commentable do |options|
+    resources :comments, options
+  end
+
   resources :questions do
-    resources :answers, only: [:new, :create]
+    concerns :commentable, only: [:create], commentable_type: 'Question'
+    resources :answers, only: [:create]
+  end
+
+  resources :answers, only: [:create] do
+    concerns :commentable, only: [:create], commentable_type: 'Answer'
   end
 end

@@ -14,6 +14,7 @@ class AnswersController < ApplicationController
   before_action :private_access!
 
   def create
+    byebug
     question = Question.find(params[:question_id])
     question.answers.create(answer_params)
 

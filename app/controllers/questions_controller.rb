@@ -19,7 +19,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question_answers = @question.answers
+    @question_answers = @question.answers.includes(:comments)
+    @question_comments = @question.comments.order(created_at: :asc)
   end
 
   def new

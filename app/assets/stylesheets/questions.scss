@@ -5,7 +5,7 @@
   .question{
 
     align-items: center;
-    border-top: 1px solid #EAEAEA;
+    border-top: 1px solid #E2E2E2;
     display: flex;
     padding: 10px;
 
@@ -39,13 +39,16 @@
   .answers {
     margin-top: 40px;
 
+    .page-subtitle {
+      margin-bottom: 0;
+    }
+
     .answer {
-      margin-top: 20px;
+      padding: 10px 0;
     }
   }
 
   .answer-form {
     margin-top: 20px;
   }
-
 }

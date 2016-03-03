@@ -1,8 +1,9 @@
 <%= form_for [@question, @question.answers.build] do |f| %>
-
-  <div class="form-group">
-    <%= f.text_area :body, rows: 2, class: 'form-control', placeholder: 'Descripción' %>
+ <div class="form-group">
+    <%= f.text_area :body, rows: 2, class: 'form-control', placeholder: 'Escribe tu respuesta' %>
   </div>
 
-  <%= f.submit 'Responder', class: 'btn btn-primary btn-sm pull-right' %>
+  <div class="text-right">
+    <%= f.submit 'Responder', class: 'btn btn-primary btn-sm' %>
+  </div>
 <% end %>
