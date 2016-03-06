@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    models:
+      question: pregunta
+      answer: respuesta
+      vote: voto
+      comment: comentario
+
+    attributes:
+      question:
+        title: Título
+        body: Descripción
+
+      answer:
+        body: Título
+
+      user:
+        email: Correo electrónico
+        password: Contraseña
