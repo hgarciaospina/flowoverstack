@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       sign_in(user)
       redirect_to root_path, notice: 'Bienvenido a FlowOverstack'
     else
+      flash[:error] = 'Email o contraseña inválidos.'
       render :new
     end
   end
