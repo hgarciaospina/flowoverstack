@@ -1,0 +1,25 @@
+<div class="question">
+  <div class="metric">
+    <span class="quantity"><%= question.votes.size %></span>
+    <span class="name">Votos</span>
+  </div>
+  <div class="metric">
+    <span class="quantity"><%= question.answers.size %></span>
+    <span class="name">Respuestas</span>
+  </div>
+  <div class="detail">
+    <h2 class="title"><%= link_to question.title.capitalize, question %></h2>
+    <span class="user">Preguntó <%= question.user.email %> hace <%= time_ago_in_words(question.created_at) %></span>
+  </div>
+
+  <% if signed_in? && question.belong_user(current_user) %>
+    <div class="actions">
+      <%= link_to edit_question_path(question) do %>
+        <span class="glyphicon glyphicon-pencil"></span>
+      <% end %>
+      <%= link_to question_path(question), method: :delete, data: { confirm: "¿Estás seguro?" } do %>
+        <span class="glyphicon glyphicon-trash"></span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

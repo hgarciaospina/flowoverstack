@@ -1,56 +1,28 @@
 Rails.application.routes.draw do
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  root 'questions#index'
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  get 'register', to: 'users#new'
+  post 'register', to: 'users#create'
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  concern :commentable do |options|
+    resources :comments, options
+  end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  concern :votable do |options|
+    resources :votes, options
+  end
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  resources :questions do
+    concerns :votable, only: [:create, :destroy], votable_type: 'Question'
+    concerns :commentable, only: [:create], commentable_type: 'Question'
+    resources :answers, only: [:create]
+  end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  resources :answers, only: [:create] do
+    concerns :votable, only: [:create, :destroy], votable_type: 'Answer'
+    concerns :commentable, only: [:create], commentable_type: 'Answer'
+  end
 end

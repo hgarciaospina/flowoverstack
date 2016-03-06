@@ -1,0 +1,37 @@
+<div class="answer">
+
+  <div class="answer-detail">
+    <% if signed_in? %>
+      <% if current_user.voted(answer) %>
+        <div class="votes voted">
+          <%= link_to answer_vote_path(answer, answer.votes.take), method: :delete do %>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="quantity-votos"><%= answer.votes.size %></span>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="votes">
+          <%= link_to answer_votes_path(answer), method: :post do %>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="quantity-votos"><%= answer.votes.size %></span>
+          <% end %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="votes">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        <span class="quantity-votos"><%= answer.votes.size %></span>
+      </div>
+    <% end %>
+
+    <div><%= markdown answer.body %></div>
+  </div>
+
+  <div class="comments">
+    <%= render answer.comments.order(:created_at) %>
+
+    <% if signed_in? %>
+      <%= render 'comments/form', commentable: answer %>
+    <% end %>
+  </div>
+</div>
