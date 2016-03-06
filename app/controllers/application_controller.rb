@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
       redirect_to :login unless signed_in?
     end
 
-    def public_access!
+    def unauthenticated_access_only!
       redirect_to root_path if signed_in?
     end
 end

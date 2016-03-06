@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   before_action :private_access!, only: [:destroy]
-  before_action :public_access!, except: [:destroy]
+  before_action :unauthenticated_access_only!, except: [:destroy]
 
   def new
   end
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       sign_in(user)
-      redirect_to root_path, notice: 'Bienvenido a FlowOverstack'
+      redirect_to root_path, notice: 'Bienvenido a FlowOverstack.'
     else
       flash[:error] = 'Email o contraseña inválidos.'
       render :new
