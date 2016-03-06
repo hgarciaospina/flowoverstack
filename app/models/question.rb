@@ -12,10 +12,14 @@
 
 class Question < ActiveRecord::Base
   belongs_to :user
-  has_many :votes, as: :votable
-  has_many :answers
-  has_many :comments, as: :commentable
+  has_many :votes, as: :votable, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates :title, presence: true
   validates :body, presence: true
+
+  def belong_user(current_user)
+    user == current_user
+  end
 end

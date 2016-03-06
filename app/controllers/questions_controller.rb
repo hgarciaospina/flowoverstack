@@ -12,7 +12,8 @@
 
 class QuestionsController < ApplicationController
   before_action :private_access!, except: [:index, :show]
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, except: [:index, :new, :create]
+  before_action :access_only_your_questions!, only: [:edit, :update, :destroy]
 
   def index
     @questions = Question.includes(:votes, :answers).limit(10).order(created_at: :desc)
@@ -58,6 +59,10 @@ class QuestionsController < ApplicationController
 
     def set_question
       @question = Question.find(params[:id])
+    end
+
+    def access_only_your_questions!
+      redirect_to questions_path, alert: 'No tienes permisos.' unless @question.belong_user(current_user)
     end
 
     def question_params

@@ -8,6 +8,18 @@
     border-top: 1px solid #E2E2E2;
     display: flex;
 
+    .actions {
+      margin-left: auto;
+
+      a {
+        color: #ACAAAA;
+      }
+
+      :hover {
+        color: #F04500;
+      }
+    }
+
     .metric {
       text-align: center;
       margin-right: 30px;
