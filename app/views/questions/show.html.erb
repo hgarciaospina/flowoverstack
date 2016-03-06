@@ -42,7 +42,13 @@
 
       <div class="answers">
         <h2 class="page-subtitle"><%= @question_answers.size %> Respuesta(s)</h2>
-        <%= render @question_answers %>
+        <% if @question_answers.size > 0 %>
+          <%= render @question_answers %>
+        <% else %>
+          <div class="no-answers">
+            <span>¡Sé el primero en responder!</span>
+          </div>
+        <% end %>
       </div>
       <% if signed_in? %>
         <div class="answer-form">
