@@ -16,7 +16,11 @@ class QuestionsController < ApplicationController
   before_action :access_only_your_questions!, only: [:edit, :update, :destroy]
 
   def index
-    @questions = Question.includes(:votes, :answers).limit(10).order(created_at: :desc)
+    if params[:q]
+      @questions = Question.includes(:votes, :answers).where('title ILIKE ?', "%#{params[:q]}%")
+    else
+      @questions = Question.includes(:votes, :answers).limit(10).order(created_at: :desc)
+    end
   end
 
   def show

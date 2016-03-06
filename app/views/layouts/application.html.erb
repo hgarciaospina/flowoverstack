@@ -27,11 +27,11 @@
             <ul class="nav navbar-nav">
               
             </ul>
-            <form class="navbar-form navbar-right" role="search">
+            <%= form_tag questions_path, method: :get, class: 'navbar-form navbar-right' do %>
               <div class="form-group">
-                <input type="text" class="form-control" placeholder="Buscar">
+                <%= text_field_tag :q, nil, class: 'form-control', placeholder: 'Buscar' %>
               </div>
-            </form>
+            <% end %>
             <ul class="nav navbar-nav navbar-right">
               <% if signed_in? %>
                 <li><%= link_to "Salir", logout_path, method: :delete %></li>
