@@ -1,19 +1,26 @@
 <div class="answer">
 
   <div class="answer-detail">
-    <% if current_user.voted(answer) %>
-      <div class="votes voted">
-        <%= link_to answer_vote_path(answer, answer.votes.take), method: :delete do %>
+    <% if signed_in? %>
+      <% if current_user.voted(answer) %>
+        <div class="votes voted">
+          <%= link_to answer_vote_path(answer, answer.votes.take), method: :delete do %>
             <span class="glyphicon glyphicon-chevron-up"></span>
             <span class="quantity-votos"><%= answer.votes.size %></span>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% else %>
+        <div class="votes">
+          <%= link_to answer_votes_path(answer), method: :post do %>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="quantity-votos"><%= answer.votes.size %></span>
+          <% end %>
+        </div>
+      <% end %>
     <% else %>
       <div class="votes">
-        <%= link_to answer_votes_path(answer), method: :post do %>
-            <span class="glyphicon glyphicon-chevron-up"></span>
-            <span class="quantity-votos"><%= answer.votes.size %></span>
-        <% end %>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        <span class="quantity-votos"><%= answer.votes.size %></span>
       </div>
     <% end %>
 

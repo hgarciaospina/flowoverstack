@@ -5,19 +5,26 @@
       <h1 class="page-title"><%= @question.title.capitalize %></h1>
 
       <div class="question-detail">
-        <% if current_user.voted(@question) %>
-          <div class="votes voted">
-            <%= link_to question_vote_path(@question, @question_votes.take), method: :delete do %>
-              <span class="glyphicon glyphicon-chevron-up"></span>
-              <span class="quantity-votos"><%= @question_votes.size %></span>
-            <% end %>
-          </div>
+        <% if signed_in? %>
+          <% if current_user.voted(@question) %>
+            <div class="votes voted">
+              <%= link_to question_vote_path(@question, @question_votes.take), method: :delete do %>
+                <span class="glyphicon glyphicon-chevron-up"></span>
+                <span class="quantity-votos"><%= @question_votes.size %></span>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="votes">
+              <%= link_to question_votes_path(@question), method: :post do %>
+                <span class="glyphicon glyphicon-chevron-up"></span>
+                <span class="quantity-votos"><%= @question_votes.size %></span>
+              <% end %>
+            </div>
+          <% end %>
         <% else %>
           <div class="votes">
-            <%= link_to question_votes_path(@question), method: :post do %>
-              <span class="glyphicon glyphicon-chevron-up"></span>
-              <span class="quantity-votos"><%= @question_votes.size %></span>
-            <% end %>
+            <span class="glyphicon glyphicon-chevron-up"></span>
+            <span class="quantity-votos"><%= @question_votes.size %></span>
           </div>
         <% end %>
 
