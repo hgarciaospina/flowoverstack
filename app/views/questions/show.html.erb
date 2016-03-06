@@ -3,14 +3,35 @@
 
     <div class="question-page">
       <h1 class="page-title"><%= @question.title.capitalize %></h1>
-      <p><%= @question.body %></p>
+
+      <div class="question-detail">
+        <% if current_user.voted(@question) %>
+          <div class="votes voted">
+            <%= link_to question_vote_path(@question, @question_votes.take), method: :delete do %>
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="quantity-votos"><%= @question_votes.size %></span>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="votes">
+            <%= link_to question_votes_path(@question), method: :post do %>
+              <span class="glyphicon glyphicon-chevron-up"></span>
+              <span class="quantity-votos"><%= @question_votes.size %></span>
+            <% end %>
+          </div>
+        <% end %>
+
+        <div>
+          <p><%= @question.body %></p>
+        </div>
+      </div>
 
       <div class="comments">
         <%= render @question_comments %>
+        <% if signed_in? %>
+          <%= render 'comments/form', commentable: @question %>
+        <% end %>
       </div>
-      <% if signed_in? %>
-        <%= render 'comments/form', commentable: @question %>
-      <% end %>
 
       <div class="answers">
         <h2 class="page-subtitle"><%= @question_answers.size %> Respuesta(s)</h2>

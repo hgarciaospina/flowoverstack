@@ -1,4 +1,12 @@
 <div class="question">
+  <div class="metric">
+    <span class="quantity"><%= question.votes.size %></span>
+    <span class="name">Votos</span>
+  </div>
+  <div class="metric">
+    <span class="quantity"><%= question.answers.size %></span>
+    <span class="name">Respuestas</span>
+  </div>
   <div class="detail">
     <h2 class="title"><%= link_to question.title.capitalize, question %></h2>
     <span class="user">Preguntó <%= question.user.email %> hace <%= time_ago_in_words(question.created_at) %></span>

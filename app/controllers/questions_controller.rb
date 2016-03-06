@@ -15,12 +15,13 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def index
-    @questions = Question.all.order(created_at: :desc)
+    @questions = Question.includes(:votes, :answers).limit(10).order(created_at: :desc)
   end
 
   def show
-    @question_answers = @question.answers.includes(:comments)
-    @question_comments = @question.comments.order(created_at: :asc)
+    @question_votes = @question.votes
+    @question_answers = @question.answers.order_by_ranking.includes(:comments, :votes)
+    @question_comments = @question.comments.order(:created_at)
   end
 
   def new

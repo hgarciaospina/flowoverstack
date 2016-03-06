@@ -1,5 +1,6 @@
 <%= form_for [@question, @question.answers.build] do |f| %>
- <div class="form-group">
+
+  <div class="form-group">
     <%= f.text_area :body, rows: 2, class: 'form-control', placeholder: 'Escribe tu respuesta' %>
   </div>
 

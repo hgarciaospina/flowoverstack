@@ -7,7 +7,21 @@
     align-items: center;
     border-top: 1px solid #E2E2E2;
     display: flex;
-    padding: 10px;
+
+    .metric {
+      text-align: center;
+      margin-right: 30px;
+
+      .name{
+        color: #969696;
+      }
+
+      .quantity {
+        display: block;
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
 
     .detail {
 
@@ -23,7 +37,7 @@
       }
 
       .user {
-        color: #B5B5B5;
+        color: #969696;
       }
     }
 
@@ -36,6 +50,10 @@
     margin-bottom: 20px;
   }
 
+  .question-detail {
+    display: flex;
+  }
+
   .answers {
     margin-top: 40px;
 
@@ -45,6 +63,10 @@
 
     .answer {
       padding: 10px 0;
+
+      .answer-detail {
+        display: flex
+      }
     }
   }
 

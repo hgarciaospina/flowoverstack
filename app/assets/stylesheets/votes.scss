@@ -1,0 +1,24 @@
+.votes {
+  margin-right: 10px;
+  text-align: center;
+  
+  a {
+    color: #ACAAAA;
+    font-size: 14px;
+    text-decoration: initial;
+  }
+
+  :hover {
+    color: #F04500;
+  }
+
+  .quantity-votos{
+    display: block;
+  }
+}
+
+.voted {
+  a {
+    color: #F04500 !important;
+  }
+}
