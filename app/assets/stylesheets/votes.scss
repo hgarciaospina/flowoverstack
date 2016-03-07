@@ -3,7 +3,7 @@
   text-align: center;
   
   a {
-    color: #ACAAAA;
+    color: $gray;
     font-size: 14px;
     text-decoration: initial;
   }
@@ -19,6 +19,6 @@
 
 .voted {
   a {
-    color: #F04500 !important;
+    color: $orange !important;
   }
 }
