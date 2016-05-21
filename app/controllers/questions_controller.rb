@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
     @question = current_user.questions.new(question_params)
 
     if @question.save
-     redirect_to @question, notice: 'Pregunta publicada.'
+      redirect_to @question, notice: 'Pregunta publicada.'
     else
       render :new
     end

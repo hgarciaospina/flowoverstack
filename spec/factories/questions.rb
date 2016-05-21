@@ -15,5 +15,9 @@ FactoryGirl.define do
     association :user
     title { Faker::Hipster.sentence }
     body { Faker::Lorem.paragraph }
+
+    factory :invalid_question do
+      title nil
+    end 
   end
 end
