@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
+  get 'loaderio-f6b8c45538197dfd236d7d211b9cca5d', to: 'questions#index'
+
   concern :commentable do |options|
     resources :comments, options
   end
