@@ -13,8 +13,8 @@
 FactoryGirl.define do
   factory :question do
     association :user
-    title { Faker::Hipster.sentence }
-    body { Faker::Lorem.paragraph }
+    title { Faker::Hipster.sentence(3) }
+    body { Faker::Lorem.characters(600) }
 
     factory :invalid_question do
       title nil
