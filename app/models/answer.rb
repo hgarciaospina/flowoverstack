@@ -16,7 +16,7 @@ class Answer < ActiveRecord::Base
   has_many :votes, as: :votable, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
 
-  validates :body, presence: true
+  validates :body, presence: true, length: { maximum: 800 }
 
   scope :order_by_ranking, -> { order("votes.id") }
 end
